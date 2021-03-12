@@ -19,7 +19,8 @@ https://microservices.io/ \
 https://opensource.com/resources/what-are-microservices \
 https://www.redhat.com/en/topics/microservices/what-are-microservices \
 https://www.bmc.com/blogs/microservices-best-practices/ \
-https://www.marlabs.com/blog-practices-in-microservices-implementation 
+https://www.marlabs.com/blog-practices-in-microservices-implementation  \
+https://www.ibm.com/cloud/learn/rest-apis
 
 #### Gradle
 
@@ -42,23 +43,22 @@ https://runnable.com/docker/java/dockerize-your-java-application
 
 #### SW-API
 
-Star Wars API for retrieving data of the characters, starships or planets that appear in the films. **WARNING! Unable to connect today from Firefox or Opera.**
+Star Wars API for retrieving data of the characters, starships or planets that appear in the films. 
 
+Usage examples from the [documentation](https://swapi.dev/documentation):
 ```
-Did Not Connect: Potential Security Issue
-
-Firefox detected an issue and did not continue to swapi.dev. The web site is either misconfigured or your computer clock is set to the wrong time.
-
-It’s likely the web site’s certificate is expired, which prevents Firefox from connecting securely.
-
-What can you do about it?
-
-swapi.dev has a security policy called HTTP Strict Transport Security (HSTS), which means that Firefox can only connect to it securely. You can’t add an exception to visit this site.
-
-The issue is most likely with the web site, and there is nothing you can do to resolve it. You can notify the web site’s administrator about the problem.
+# Query some data
+> curl https://swapi.dev/api/people/1
+``` ```
+# Search for some entry
+> curl https://swapi.dev/api/people/?search=r2
+``` ```
+# See the schema of some category
+> curl https://swapi.dev/api/people/schema
 ```
 
 https://swapi.dev/ \
+https://github.com/maartendekker1998/StarWarsAPI \
 https://medium.com/swlh/getting-json-data-from-a-restful-api-using-java-b327aafb3751 \
 https://stackoverflow.com/questions/45259521/how-to-get-json-data-from-this-api 
 
@@ -89,9 +89,12 @@ https://octopus.com/docs/guides/deploy-java-docker-app/to-k8s/using-octopus-onpr
 Micronaut is designed to make creating microservices quick and easy. It is a JVM-based framework for building lightweight, modular applications. 
 
 https://micronaut.io/ \
+https://docs.micronaut.io/latest/guide/index.html \
 https://www.baeldung.com/micronaut \
 https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html \
-https://medium.com/swlh/a-guide-to-building-a-micronaut-application-with-micronaut-data-support-e578aeea5dd6
+https://medium.com/swlh/a-guide-to-building-a-micronaut-application-with-micronaut-data-support-e578aeea5dd6 \
+https://dzone.com/articles/building-microservices-with-micronaut \
+https://dzone.com/articles/a-quick-guide-to-microservices-with-the-micronaut
 
 
 #### Distributed systems
@@ -103,5 +106,20 @@ https://www.tutorialspoint.com/Distributed-Systems \
 https://www.codemag.com/Article/1909071/Design-Patterns-for-Distributed-Systems \
 https://martinfowler.com/articles/patterns-of-distributed-systems/ 
 
+## Troubleshooting
 
+* SSL certificate expired
 
+This error might arise when accessing [SWAPI](https://swapi.dev/), wheter from a web browser or when querying some data to the API as in the following case:
+
+```
+user$> curl https://swapi.dev/api/people/?search=r2
+curl: (60) SSL certificate problem: certificate has expired
+More details here: https://curl.haxx.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+```
+
+The solution is establishing a new certificate for the API, what has to be done by the developers/maintainers or. Another temporarily solution is changing the date of our device so that it seems to it that the certificate is not expired. 
