@@ -1,0 +1,37 @@
+### Java ###
+bin/
+*.class
+
+
+### Eclipse ###
+.settings/
+.project
+.classpath
+
+
+### Package Files ###
+*.jar
+*.war
+*.ear
+
+
+### Gradle ###
+.gradle
+gradle/
+gradlew
+gradlew.bat
+/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+
+### This project ###
+swapi/.gitattributes
+swapi/.gitignore
