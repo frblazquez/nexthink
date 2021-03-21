@@ -1,15 +1,49 @@
 # Nexthink - Junior Software Engineer Test
 	
 **Francisco Javier Blázquez Martínez** \
-**frblazquezm@gmail.com**\
+**frblazquezm@gmail.com** \                     [comment]: # (TODO: beautify!)
+**https://github.com/frblazquez** \             [comment]: # (TODO: beautify!)
+**https://www.linkedin.com/in/frblazquez/** \   [comment]: # (TODO: beautify!)
 \
 Double degree in Mathematics - Computer Engineering \
 \
-Complutense University of Madrid \
-École Politechnique Fédérale de Lausanne 
+Complutense University of Madrid, Spain \
+École Politechnique Fédérale de Lausanne, Switzerland 
 
 
-## Technologies I have never used, first approach:
+
+## Prerequisites
+
+- [**Gradle**](https://gradle.org/)         [comment]: # (TODO: version?)
+- [**Micronaut**](https://micronaut.io/)    [comment]: # (TODO: version?)
+- [**Docker**](https://www.docker.com/)     [comment]: # (TODO: version?)
+
+
+
+## Execution
+
+Up to this point we have a microservice implemented in java with Micronaut framework and Gradle. To compile, test, create a docker image and deploy this we have to execute the following:
+
+```
+# Run the tests
+> ./gradlew test
+
+# Check the result of the tests
+# open build/reports/tests/test/index.html
+
+# Run the application (port 8080 by default)
+# ./gradlew run
+
+# Create a Docker image (returns an Image ID)
+> ./gradlew dockerBuild
+
+# Get the image ID returned and run the image as a container
+docker run -p [host-port]:[container-port] [image ID]
+```
+
+
+
+## Technologies I have never used, first approach
 
 #### Microservices
 
@@ -38,7 +72,8 @@ Docker is an open source tool designed to make it easier to create, deploy, and 
 https://opensource.com/resources/what-docker \
 https://docs.docker.com/ \
 https://www.atlassian.com/blog/software-teams/deploy-java-apps-with-docker-awesome \
-https://runnable.com/docker/java/dockerize-your-java-application
+https://runnable.com/docker/java/dockerize-your-java-application \
+https://linuxhandbook.com/remove-docker-images/
 
 
 #### SW-API
@@ -46,15 +81,20 @@ https://runnable.com/docker/java/dockerize-your-java-application
 Star Wars API for retrieving data of the characters, starships or planets that appear in the films. 
 
 Usage examples from the [documentation](https://swapi.dev/documentation):
+
 ```
 # Query some data
 > curl https://swapi.dev/api/people/1
-``` ```
+```
+
+```
 # Search for some entry
 > curl https://swapi.dev/api/people/?search=r2
-``` ```
+```
+ 
+```
 # See the schema of some category
-> curl https://swapi.dev/api/people/schema
+> curl https://swapi.dev/api/people/schema 
 ```
 
 https://swapi.dev/ \
@@ -90,8 +130,8 @@ Micronaut is designed to make creating microservices quick and easy. It is a JVM
 
 https://micronaut.io/ \
 https://docs.micronaut.io/latest/guide/index.html \
-https://www.baeldung.com/micronaut \
 https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html \
+https://www.baeldung.com/micronaut \
 https://medium.com/swlh/a-guide-to-building-a-micronaut-application-with-micronaut-data-support-e578aeea5dd6 \
 https://dzone.com/articles/building-microservices-with-micronaut \
 https://dzone.com/articles/a-quick-guide-to-microservices-with-the-micronaut
@@ -106,9 +146,11 @@ https://www.tutorialspoint.com/Distributed-Systems \
 https://www.codemag.com/Article/1909071/Design-Patterns-for-Distributed-Systems \
 https://martinfowler.com/articles/patterns-of-distributed-systems/ 
 
+
+
 ## Troubleshooting
 
-* SSL certificate expired
+* **SSL certificate expired**
 
 This error might arise when accessing [SWAPI](https://swapi.dev/), wheter from a web browser or when querying some data to the API as in the following case:
 
@@ -123,3 +165,12 @@ how to fix it, please visit the web page mentioned above.
 ```
 
 The solution is establishing a new certificate for the API, what has to be done by the developers/maintainers or. Another temporarily solution is changing the date of our device so that it seems to it that the certificate is not expired. 
+
+
+
+## References
+
+- [Micronaut first app](https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html)
+- [Run docker image as container](https://docs.docker.com/language/nodejs/run-containers/)
+
+
