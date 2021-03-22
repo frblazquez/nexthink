@@ -1,9 +1,9 @@
 # Nexthink - Junior Software Engineer Test
 	
 **Francisco Javier Blázquez Martínez** \
-**frblazquezm@gmail.com** \                     [comment]: # (TODO: beautify!)
-**https://github.com/frblazquez** \             [comment]: # (TODO: beautify!)
-**https://www.linkedin.com/in/frblazquez/** \   [comment]: # (TODO: beautify!)
+**frblazquezm@gmail.com** \                     <!-- TODO: beautify! -->
+**https://github.com/frblazquez** \             <!-- TODO: beautify! -->
+**https://www.linkedin.com/in/frblazquez/** \   <!-- TODO: beautify! -->
 \
 Double degree in Mathematics - Computer Engineering \
 \
@@ -14,9 +14,9 @@ Complutense University of Madrid, Spain \
 
 ## Prerequisites
 
-- [**Gradle**](https://gradle.org/)         [comment]: # (TODO: version?)
-- [**Micronaut**](https://micronaut.io/)    [comment]: # (TODO: version?)
-- [**Docker**](https://www.docker.com/)     [comment]: # (TODO: version?)
+- [**Gradle**](https://gradle.org/)         <!-- TODO: version? -->
+- [**Micronaut**](https://micronaut.io/)    <!-- TODO: version? -->
+- [**Docker**](https://www.docker.com/)     <!-- TODO: version? -->
 
 
 
@@ -54,7 +54,8 @@ https://opensource.com/resources/what-are-microservices \
 https://www.redhat.com/en/topics/microservices/what-are-microservices \
 https://www.bmc.com/blogs/microservices-best-practices/ \
 https://www.marlabs.com/blog-practices-in-microservices-implementation  \
-https://www.ibm.com/cloud/learn/rest-apis
+https://www.ibm.com/cloud/learn/rest-apis \
+https://github.com/piomin/sample-micronaut-microservices
 
 #### Gradle
 
@@ -134,7 +135,8 @@ https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html \
 https://www.baeldung.com/micronaut \
 https://medium.com/swlh/a-guide-to-building-a-micronaut-application-with-micronaut-data-support-e578aeea5dd6 \
 https://dzone.com/articles/building-microservices-with-micronaut \
-https://dzone.com/articles/a-quick-guide-to-microservices-with-the-micronaut
+https://dzone.com/articles/a-quick-guide-to-microservices-with-the-micronaut \
+https://github.com/piomin/sample-micronaut-microservices
 
 
 #### Distributed systems
@@ -171,6 +173,8 @@ The solution is establishing a new certificate for the API, what has to be done 
 ## References
 
 - [Micronaut first app](https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html)
+- [Micronaut microservices example](https://github.com/piomin/sample-micronaut-microservices)
 - [Run docker image as container](https://docs.docker.com/language/nodejs/run-containers/)
+
 
 
