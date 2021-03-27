@@ -174,6 +174,7 @@ The solution is establishing a new certificate for the API, what has to be done 
 
 - [Micronaut first app](https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html)
 - [Micronaut microservices example](https://github.com/piomin/sample-micronaut-microservices)
+- [Micronaut API http client](https://guides.micronaut.io/micronaut-client-http/guide/index.html)
 - [Run docker image as container](https://docs.docker.com/language/nodejs/run-containers/)
 
 

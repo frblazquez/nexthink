@@ -19,8 +19,8 @@ public class SwapiControllerTest {
     @Client("/")
     RxHttpClient client; 
 
-    @Test
-    public void testGetInhabitantsPlanet() {
+    //@Test
+    public void testGetStarshipsCharacter() {
     	String character = "luke";
     	
         HttpRequest<String> request = HttpRequest.GET("/swapi/characters/"+character+"/starships"); 
@@ -30,15 +30,23 @@ public class SwapiControllerTest {
         assertEquals("Hello World: "+character, body);
     }
     
-    @Test
-    public void testGetStarshipsCharacter() {
+    //@Test
+    public void testGetInhabitantsPlanet() {
     	String planet = "pluto";
     	
-        HttpRequest<String> request = HttpRequest.GET("/swapi/planets/"+planet+"/starships"); 
+        HttpRequest<String> request = HttpRequest.GET("/swapi/planets/"+planet+"/inhabitants"); 
         String body = client.toBlocking().retrieve(request);
 
         assertNotNull(body);
         assertEquals("Hello World: "+planet, body);
+    }
+    
+    @Test
+    public void getData() {
+    	HttpRequest<String> request = HttpRequest.GET("https://swapi.dev/api/people/1/");
+    	String body = client.toBlocking().retrieve(request);
+    	
+    	System.out.println(body);
     }
 
 }
