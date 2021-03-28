@@ -1,3 +1,6 @@
 micronaut:
   application:
     name: swapi
+  http:
+    client:
+      read-timeout: 20s

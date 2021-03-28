@@ -1,9 +1,10 @@
 # Nexthink - Junior Software Engineer Test
 	
+<!-- TODO: beautify! -->
 **Francisco Javier Blázquez Martínez** \
-**frblazquezm@gmail.com** \                     <!-- TODO: beautify! -->
-**https://github.com/frblazquez** \             <!-- TODO: beautify! -->
-**https://www.linkedin.com/in/frblazquez/** \   <!-- TODO: beautify! -->
+**frblazquezm@gmail.com** \                     
+**https://github.com/frblazquez** \            
+**https://www.linkedin.com/in/frblazquez/** \  
 \
 Double degree in Mathematics - Computer Engineering \
 \
@@ -14,9 +15,12 @@ Complutense University of Madrid, Spain \
 
 ## Prerequisites
 
-- [**Gradle**](https://gradle.org/)         <!-- TODO: version? -->
-- [**Micronaut**](https://micronaut.io/)    <!-- TODO: version? -->
-- [**Docker**](https://www.docker.com/)     <!-- TODO: version? -->
+<!-- TODO: beautify! -->
+- [**Gradle**](https://gradle.org/)        
+- [**Micronaut**](https://micronaut.io/)   
+- [**Docker**](https://www.docker.com/)   
+<!-- TODO: Kubernetes! -->
+- **Kubernetes**
 
 
 
@@ -168,6 +172,11 @@ how to fix it, please visit the web page mentioned above.
 
 The solution is establishing a new certificate for the API, what has to be done by the developers/maintainers or. Another temporarily solution is changing the date of our device so that it seems to it that the certificate is not expired. 
 
+* **Read timeout**
+SOLVED
+
+* **Spaces in the names to query the API**
+UNSOLVED
 
 
 ## References
@@ -175,6 +184,7 @@ The solution is establishing a new certificate for the API, what has to be done 
 - [Micronaut first app](https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html)
 - [Micronaut microservices example](https://github.com/piomin/sample-micronaut-microservices)
 - [Micronaut API http client](https://guides.micronaut.io/micronaut-client-http/guide/index.html)
+- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 - [Run docker image as container](https://docs.docker.com/language/nodejs/run-containers/)
 
 
