@@ -114,7 +114,8 @@ https://docs.oracle.com/en/solutions/deploy-microservices/index.html#GUID-3BB86E
 https://docs.docker.com/get-started/kube-deploy/ \
 https://medium.com/the-resonant-web/kubernetes-in-practice-part-2-2d2a7290dd65 \
 https://octopus.com/blog/ultimate-guide-to-k8s-microservice-deployments \
-https://octopus.com/docs/guides/deploy-java-docker-app/to-k8s/using-octopus-onprem-jenkins-dockerhub
+https://octopus.com/docs/guides/deploy-java-docker-app/to-k8s/using-octopus-onprem-jenkins-dockerhub \
+https://www.middlewareinventory.com/blog/deploy-docker-image-to-kubernetes/
 
 
 #### Micronaut

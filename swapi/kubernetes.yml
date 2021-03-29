@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: swapi-pod
+spec:
+   containers:
+   - name: swapi-container
+     image: <image_id>
+     ports:
+     - containerPort: 6969
