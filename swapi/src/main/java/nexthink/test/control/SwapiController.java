@@ -29,8 +29,6 @@ public class SwapiController {
     
     private JSONObject getDataFromAPI(String path) throws ParseException {
     	
-    	LOG.info("Querying: "+path);
-    	
     	// WARNING! This doesn't properly parse the JSON object!!
     	//HttpRequest<?> request = HttpRequest.GET(path); 
         //return client.toBlocking().retrieve(request, JSONObject.class);
@@ -55,7 +53,8 @@ public class SwapiController {
 		
 		try {
 			// Search query to the API
-			JSONObject apiSearchResult = getDataFromAPI("/people/?search="+characterName);
+			String characterNameForURL = characterName.replace(" ", "%20");
+			JSONObject apiSearchResult = getDataFromAPI("/people/?search="+characterNameForURL);
 			
 			if ((long) apiSearchResult.get("count") == 0) {
 				LOG.warn("No result found in SWAPI for character name \""+characterName+"\"");
@@ -94,7 +93,8 @@ public class SwapiController {
 		
 		try {
 			// Search query to the API
-			JSONObject apiSearchResult = getDataFromAPI("/planets/?search="+planetName);
+			String planetNameForURL = planetName.replace(" ", "%20");
+			JSONObject apiSearchResult = getDataFromAPI("/planets/?search="+planetNameForURL);
 			
 			if ((long) apiSearchResult.get("count") == 0) {
 				LOG.warn("No result found in SWAPI for planet name \""+planetName+"\"");

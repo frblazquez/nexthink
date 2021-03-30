@@ -1,6 +1,5 @@
 # Nexthink - Junior Software Engineer Test
 	
-<!-- TODO: beautify! -->
 **Francisco Javier Blázquez Martínez** \
 **frblazquezm@gmail.com** \                     
 **https://github.com/frblazquez** \            
@@ -15,11 +14,9 @@ Complutense University of Madrid, Spain \
 
 ## Prerequisites
 
-<!-- TODO: beautify! -->
-- [**Gradle**](https://gradle.org/)        
-- [**Micronaut**](https://micronaut.io/)   
-- [**Docker**](https://www.docker.com/)   
-<!-- TODO: Kubernetes! -->
+- [**Gradle** (6.8.3)](https://gradle.org/)        
+- [**Micronaut** (2.4.2)](https://micronaut.io/)   
+- [**Docker** (19.03.8)](https://www.docker.com/)   
 - **Kubernetes**
 
 
@@ -30,16 +27,7 @@ Up to this point we have a microservice implemented in java with Micronaut frame
 
 ```
 # Run the tests
-> ./gradlew test
-
-# Check the result of the tests
-# open build/reports/tests/test/index.html
-
-# Run the application (port 8080 by default)
-# ./gradlew run
-
-# Create a Docker image (returns an Image ID)
-> ./gradlew dockerBuild
+> ./gradlew  clean test dockerbuild
 
 # Get the image ID returned and run the image as a container
 docker run -p [host-port]:[container-port] [image ID]
