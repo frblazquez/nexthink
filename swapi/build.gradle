@@ -3,7 +3,7 @@ plugins {
     id("io.micronaut.application") version "1.4.2"
 }
 
-version = "0.1"
+version = "1.0"
 group = "nexthink.test"
 
 repositories {
@@ -28,10 +28,10 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
 }
 
-
 application {
     mainClass.set("nexthink.test.Application")
 }
+
 java {
     sourceCompatibility = JavaVersion.toVersion("1.8")
     targetCompatibility = JavaVersion.toVersion("1.8")

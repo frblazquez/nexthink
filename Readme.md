@@ -1,14 +1,24 @@
-# Nexthink - Junior Software Engineer Test
+# Nexthink - Software Engineer Test
 	
 **Francisco Javier Blázquez Martínez** \
-**frblazquezm@gmail.com** \                     
-**https://github.com/frblazquez** \            
-**https://www.linkedin.com/in/frblazquez/** \  
 \
 Double degree in Mathematics - Computer Engineering \
 \
 Complutense University of Madrid, Spain \
-École Politechnique Fédérale de Lausanne, Switzerland 
+École Politechnique Fédérale de Lausanne, Switzerland \
+\
+**frblazquezm@gmail.com**                      
+**https://github.com/frblazquez**             
+**https://www.linkedin.com/in/frblazquez/**   
+
+
+
+## Introduction
+
+I present here my implementation to the proposed design and functionality. I have followed all the optional requisites except the resources for deployment in a Kubernetes cluster.
+\
+Thank you very much for your time but even more for the opportunity. \
+Francis
 
 
 
@@ -17,129 +27,75 @@ Complutense University of Madrid, Spain \
 - [**Gradle** (6.8.3)](https://gradle.org/)        
 - [**Micronaut** (2.4.2)](https://micronaut.io/)   
 - [**Docker** (19.03.8)](https://www.docker.com/)   
-- **Kubernetes**
 
 
 
-## Execution
+## Test, build and deploy
 
-Up to this point we have a microservice implemented in java with Micronaut framework and Gradle. To compile, test, create a docker image and deploy this we have to execute the following:
-
+To compile, test and create a Docker image run a terminal in ```swapi``` folder and execute:
 ```
-# Run the tests
-> ./gradlew  clean test dockerbuild
-
-# Get the image ID returned and run the image as a container
-docker run -p [host-port]:[container-port] [image ID]
+./gradlew  clean test dockerbuild
+```
+It will show the ID of the docker image created, having this we can execute the following command to deploy de application as a Docker container in port 6969:
+```
+docker run -p 6969:8080 [Docker image ID]
 ```
 
 
 
-## Technologies I have never used, first approach
+## Execution examples
 
-#### Microservices
-
-Microservices are an architectural and organizational approach to software development where software is composed of small independent services that communicate over well-defined APIs. Microservices architectures make applications easier to scale and faster to develop, enabling innovation and accelerating time-to-market for new features.
-
-https://microservices.io/ \
-https://opensource.com/resources/what-are-microservices \
-https://www.redhat.com/en/topics/microservices/what-are-microservices \
-https://www.bmc.com/blogs/microservices-best-practices/ \
-https://www.marlabs.com/blog-practices-in-microservices-implementation  \
-https://www.ibm.com/cloud/learn/rest-apis \
-https://github.com/piomin/sample-micronaut-microservices
-
-#### Gradle
-
-Gradle is a build automation tool for multi-language software development. It controls the development process in the tasks of compilation and packaging to testing, deployment, and publishing.
-
-https://gradle.org/ \
-https://www.baeldung.com/gradle \
-https://www.tutorialspoint.com/gradle/index.htm 
-
-
-#### Docker
-
-Docker is an open source tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and deploy it as one package. By doing so, thanks to the container, the developer can rest assured that the application will run on any other Linux machine regardless of any customized settings that machine might have that could differ from the machine used for writing and testing the code.
-
-https://opensource.com/resources/what-docker \
-https://docs.docker.com/ \
-https://www.atlassian.com/blog/software-teams/deploy-java-apps-with-docker-awesome \
-https://runnable.com/docker/java/dockerize-your-java-application \
-https://linuxhandbook.com/remove-docker-images/
-
-
-#### SW-API
-
-Star Wars API for retrieving data of the characters, starships or planets that appear in the films. 
-
-Usage examples from the [documentation](https://swapi.dev/documentation):
-
+Once the container is deployed, we can start getting Star Wars related information from our microservice by simply opening a terminal and creating http requests, these are some examples:
 ```
-# Query some data
-> curl https://swapi.dev/api/people/1
+# Which starships drove Anakin Skywalker?
+curl http://localhost:6969/swapi/characters/Anakin%20Skywalker/starships
+
+# And Han Solo?
+curl http://localhost:6969/swapi/characters/Han%20Solo/starships
+
+# Which main caracters inhabited Alderaan?
+curl http://localhost:6969/swapi/planets/Alderaan/inhabitants
 ```
-
+\
+We are internally using the search function provided by the API so we can also do request like the followings:
 ```
-# Search for some entry
-> curl https://swapi.dev/api/people/?search=r2
+# This works, we don't have to specify the full name
+curl http://localhost:6969/swapi/characters/vader/starships
+
+# Also, it's not case sensitive!
+curl http://localhost:6969/swapi/characters/dARth%20vAdER/starships
+
+# If the name is ambiguous we log a warning and return one of the search matches
+curl http://localhost:6969/swapi/characters/skywalker/starships
+
+# And if the name doesn't mach any character we log a warning and return an error message
+curl http://localhost:6969/swapi/characters/Homer%20Simpson/starships
 ```
- 
-```
-# See the schema of some category
-> curl https://swapi.dev/api/people/schema 
-```
-
-https://swapi.dev/ \
-https://github.com/maartendekker1998/StarWarsAPI \
-https://medium.com/swlh/getting-json-data-from-a-restful-api-using-java-b327aafb3751 \
-https://stackoverflow.com/questions/45259521/how-to-get-json-data-from-this-api 
+\
+The exectuion of all the previous commands is registered at the server side in the following way:
+![Image](/swapi/imgs/execution_log.png) 
 
 
-#### cURL
 
-cURL is a command line tool that lets you create network requests.
+## Implementation design
 
-https://curl.se/docs/ \
-https://flaviocopes.com/http-curl/ \
-https://hackernoon.com/how-to-easily-use-curl-for-http-requests-db3249c5d4e6 
+For achieving the required functionality, I considered three different options:
 
+##### 1.- Dump the API data to a Data Base
 
-#### Kubernetes
+This way we have to take all the API data only once and we can solve the queries only with the help of our Data Base. This approach is feasible because of the small size of the data the API is handling. In this case our microservice would only be a DAO, being this the fastest solution (after paying the cost of creating the DB and filling it).
 
-Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
+I have not implemented this solution mainly because I don't consider it the simpler one but also because it's not applicable to bigger, more opaque or more changeable APIs. 
 
-https://kubernetes.io/ \
-https://docs.oracle.com/en/solutions/deploy-microservices/index.html#GUID-3BB86E87-11C6-4DF1-8CA9-1FD385A9B9E9 \
-https://docs.docker.com/get-started/kube-deploy/ \
-https://medium.com/the-resonant-web/kubernetes-in-practice-part-2-2d2a7290dd65 \
-https://octopus.com/blog/ultimate-guide-to-k8s-microservice-deployments \
-https://octopus.com/docs/guides/deploy-java-docker-app/to-k8s/using-octopus-onprem-jenkins-dockerhub \
-https://www.middlewareinventory.com/blog/deploy-docker-image-to-kubernetes/
+##### 2.- Take the API information to data structures
 
+Again this is feasible only because the data de API is handling has a small size (and small complexity). However, this would require the creation of big data structures and filling them with the data, executing several queries for this purpose each time the microservice is deployed, slowing down the service initialization and potentially consuming a lot of memory. 
 
-#### Micronaut
+##### 3.- Querying the API dynamically
 
-Micronaut is designed to make creating microservices quick and easy. It is a JVM-based framework for building lightweight, modular applications. 
+This might not be the fastest approach, but it's the simplest and the one I decided to implement. Specially thanks to the ```search``` feature that the API includes. Each time we want to get information we simply do a request to the API. The only problem experienced is that some user request might require several request to the API. This is the case for example when asking for the inhabitants of a planet. The final user expects the inhabitant names and not API URLs, so first we do a search to get the planet and it's data and then we map the URLs of the inhabitant entries to names by repeatedly doing request to the API.
 
-https://micronaut.io/ \
-https://docs.micronaut.io/latest/guide/index.html \
-https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html \
-https://www.baeldung.com/micronaut \
-https://medium.com/swlh/a-guide-to-building-a-micronaut-application-with-micronaut-data-support-e578aeea5dd6 \
-https://dzone.com/articles/building-microservices-with-micronaut \
-https://dzone.com/articles/a-quick-guide-to-microservices-with-the-micronaut \
-https://github.com/piomin/sample-micronaut-microservices
-
-
-#### Distributed systems
-
-A distributed system, also known as distributed computing, is a system with multiple components located on different machines that communicate and coordinate actions in order to appear as a single coherent system to the end-user.
-
-https://blog.stackpath.com/distributed-system/ \
-https://www.tutorialspoint.com/Distributed-Systems \
-https://www.codemag.com/Article/1909071/Design-Patterns-for-Distributed-Systems \
-https://martinfowler.com/articles/patterns-of-distributed-systems/ 
+Of course a mixed approach using caches could also improve the performance of this implementation, however, these are not implemented (I didn't consider them worth for this only-for-test project). 
 
 
 
@@ -161,17 +117,40 @@ how to fix it, please visit the web page mentioned above.
 
 The solution is establishing a new certificate for the API, what has to be done by the developers/maintainers or. Another temporarily solution is changing the date of our device so that it seems to it that the certificate is not expired. 
 
+* **Error when casting JSON fields**
+
+```
+Internal Server Error: class <type1> cannot be cast to <type2>
+```
+
+This error was caused because, thinking that [Micronaut RxHttpClient](https://docs.micronaut.io/latest/api/io/micronaut/http/client/RxHttpClient.html) allowed to directly get the JSONObject, I was trying to get the answer to my API requests in the following way:
+```
+HttpRequest<?> request = HttpRequest.GET(path);
+return client.toBlocking().retrieve(request, JSONObject.class);
+```
+
+The JSONObject was succesfully created but wasn't properly built. The solution was to parse it by hand:
+```
+HttpRequest<String> request = HttpRequest.GET(path);
+String body = client.toBlocking().retrieve(request);
+
+JSONParser parser = new JSONParser();
+return (JSONObject) parser.parse(body);
+```
+
 * **Read timeout**
-SOLVED
+
+The [first API](https://swapi.dev/) was much slower than the [equivallent API](https://swapi.py4e.com/) finally used. This is why, when doing several requests to it, this error could appear. For avoiding this problem I modified the [Micronaut configuration file](swapi/src/main/resources/application.yml) to increase the client http read timeout limit. I also included an special test that requires several requests to assess that the limit is more than enough.  
 
 * **Spaces in the names to query the API**
-UNSOLVED
+
+When getting parameters in the URI with ```@Get("/field/{parameter}")```, even if the spaces are expressed as ```%20``` the encoding is automatically changed. Therefore, if we want to use this parameter as part of an URL for a request we have to again replace the blank spaces by ```%20```.
+
 
 
 ## References
 
 - [Micronaut first app](https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html)
-- [Micronaut microservices example](https://github.com/piomin/sample-micronaut-microservices)
 - [Micronaut API http client](https://guides.micronaut.io/micronaut-client-http/guide/index.html)
 - [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 - [Run docker image as container](https://docs.docker.com/language/nodejs/run-containers/)
