@@ -15,7 +15,7 @@ Complutense University of Madrid, Spain \
 
 ## Introduction
 
-I present here my implementation to the proposed design and functionality. I have followed all the optional requisites except the resources for deployment in a Kubernetes cluster.
+I present here my implementation to the proposed design and functionality. I have followed all the optional requisites except the resources for deployment in a Kubernetes cluster. \
 \
 Thank you very much for your time but even more for the opportunity. \
 Francis
@@ -150,10 +150,9 @@ When getting parameters in the URI with ```@Get("/field/{parameter}")```, even i
 
 ## References
 
-- [Micronaut first app](https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html)
-- [Micronaut API http client](https://guides.micronaut.io/micronaut-client-http/guide/index.html)
+- [Micronaut User Guide](https://docs.micronaut.io/2.4.2/guide/index.html)
+- [Micronaut API Reference](https://docs.micronaut.io/2.4.2/api/index.html)
 - [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
-- [Run docker image as container](https://docs.docker.com/language/nodejs/run-containers/)
 
 
 
